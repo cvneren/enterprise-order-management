@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #3d2b1f;
+  --color-primary-container: #3d2b1f;
+  --color-on-primary: #ffffff;
+  --color-on-primary-container: #ac9181;
+  --color-background: #f5f5f4;
+  --color-surface: #ffffff;
+  --color-on-surface: #1a1c1c;
+  --color-on-surface-variant: #4f453f;
+  --color-border: #e5e5e3;
+  --color-outline: #81756e;
+  --color-secondary: #735a3a;
+  --color-secondary-container: #fddab2;
+  --color-on-secondary: #ffffff;
+
+  --font-sans: var(--font-inter), sans-serif;
+  --font-heading: var(--font-work-sans), sans-serif;
+
+  --radius-sm: 0.125rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-full: 9999px;
+  --radius: 0.25rem;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-on-surface);
+}
+
+/* Hide native number input arrows since we have custom +/- buttons */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
