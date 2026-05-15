@@ -24,7 +24,7 @@ export function BulkActionBar() {
           animate={{ y: 0, opacity: 1, x: "-50%" }}
           exit={{ y: 100, opacity: 0, x: "-50%" }}
           transition={{ type: "spring", stiffness: 300, damping: 30 }}
-          className="fixed bottom-8 left-1/2 z-50 flex items-center bg-primary text-on-primary px-6 py-4 rounded-xl shadow-2xl border border-primary-container gap-6"
+          className="hidden md:flex fixed bottom-8 left-1/2 z-50 items-center bg-primary text-on-primary px-6 py-4 rounded-xl shadow-2xl border border-primary-container gap-6"
         >
           <div className="flex items-center gap-3 border-r border-on-primary/20 pr-6">
             <span className="flex items-center justify-center w-6 h-6 rounded-full bg-secondary-container text-on-secondary-container text-xs font-bold">

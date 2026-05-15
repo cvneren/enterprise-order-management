@@ -20,6 +20,8 @@ export const metadata: Metadata = {
 };
 
 import { Toast } from "@/components/ui/Toast";
+import { MobileNavigation } from "@/components/layout/MobileNavigation";
+import { MobileDrawer } from "@/components/layout/MobileDrawer";
 
 export default function RootLayout({
   children,
@@ -31,7 +33,9 @@ export default function RootLayout({
       <body className="font-sans antialiased bg-background text-on-surface flex min-h-screen">
         <Toast />
         <Sidebar />
+        <MobileDrawer />
         <MainContent>{children}</MainContent>
+        <MobileNavigation />
       </body>
     </html>
   );

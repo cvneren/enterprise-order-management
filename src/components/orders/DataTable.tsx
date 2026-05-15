@@ -12,6 +12,7 @@ import {
 } from "@tanstack/react-table";
 import { Order } from "@/lib/mockData";
 import { getColumns } from "./columns";
+import { MobileOrderList } from "./MobileOrderList";
 import { useOrderStore } from "@/store/useStore";
 import { Search, ArrowUpDown } from "lucide-react";
 import { clsx } from "clsx";
@@ -86,10 +87,13 @@ export function DataTable({ data }: DataTableProps) {
         </div>
       </div>
 
-      {/* Table Container */}
-      <div className="bg-surface border border-border rounded-lg overflow-hidden shadow-sm">
+      {/* Mobile-Optimized Card List */}
+      <MobileOrderList data={table.getRowModel().rows.map((row) => row.original)} />
+
+      {/* Desktop Table Container */}
+      <div className="hidden md:block bg-surface border border-border rounded-lg overflow-hidden shadow-sm">
         <div className="overflow-x-auto">
-          <table className="w-full text-sm text-left">
+          <table className="hidden md:table w-full text-sm text-left">
             <thead className="bg-[#F9F9F8] border-b border-border">
               {table.getHeaderGroups().map((headerGroup) => (
                 <tr key={headerGroup.id}>

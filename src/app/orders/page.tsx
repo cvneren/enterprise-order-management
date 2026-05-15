@@ -1,6 +1,7 @@
 import { DataTable } from "@/components/orders/DataTable";
 import { BulkActionBar } from "@/components/orders/BulkActionBar";
 import { OrderDetailsDrawer } from "@/components/orders/OrderDetailsDrawer";
+import { MobileSelectionHeader } from "@/components/orders/MobileSelectionHeader";
 import { generateMockOrders } from "@/lib/mockData";
 import { simulatedFetch } from "@/lib/mockApi";
 
@@ -26,6 +27,7 @@ export default async function OrdersPage() {
 
       <DataTable data={data} />
       <BulkActionBar />
+      <MobileSelectionHeader />
       <OrderDetailsDrawer />
     </div>
   );

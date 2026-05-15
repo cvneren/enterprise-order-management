@@ -1,108 +1,81 @@
-# Enterprise Coffee Wholesale Order Dashboard
-
-[![Live Preview](https://img.shields.io/badge/Live_Preview-View_Demo-000000?style=for-the-badge&logo=vercel)](https://enterprise-order-management.vercel.app/)
-
-![Project Status](https://img.shields.io/badge/status-Production--Ready-success)
-![Coverage](https://img.shields.io/badge/coverage-100%25-success)
-![Next.js](https://img.shields.io/badge/Next.js-15.0-black?logo=next.js)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?logo=typescript)
-
 <p align="center">
-  <img src="preview.gif" alt="Enterprise Coffee Wholesale Order Dashboard Preview" width="100%" />
+  <img src="preview.gif" alt="Enterprise Dashboard Preview" width="100%" />
 </p>
 
-## Overview
+# Enterprise Coffee Wholesale Order Dashboard
 
-The **Enterprise Coffee Wholesale Order Dashboard** is a high-performance, responsive B2B management platform tailored for coffee roasteries. Built to handle complex data interactions, live order tracking, and inventory management, this dashboard serves as a highly polished, production-ready interface that balances dense data presentation with an elegant, modern user experience.
+<p align="center">
+  <img src="https://img.shields.io/badge/Next.js-16.2.4-black?style=flat-square&logo=next.js" alt="Next.js" />
+  <img src="https://img.shields.io/badge/TypeScript-5-blue?style=flat-square&logo=typescript" alt="TypeScript" />
+  <img src="https://img.shields.io/badge/Tailwind_CSS-v4-06B6D4?style=flat-square&logo=tailwindcss" alt="Tailwind CSS" />
+  <img src="https://img.shields.io/badge/status-Production_Ready-success?style=flat-square" alt="Status" />
+</p>
 
-The application follows an "Espresso Logic" design system—featuring deep espresso browns (`#3D2B1F`) and warm grays—providing a premium, professional aesthetic while strictly adhering to WCAG accessibility and contrast standards.
+<p align="center">
+  <a href="https://enterprise-order-management.vercel.app/" target="_blank">
+    <img src="https://img.shields.io/badge/View_Live_Demo-0070f3?style=for-the-badge&logo=vercel&logoColor=white" alt="Live Demo" />
+  </a>
+</p>
 
-## Tech Stack
+## Problem Statement & Business Value
 
-This project is built utilizing a modern, enterprise-grade React ecosystem:
+B2B wholesale operations require managing dense datasets, live inventory levels, and complex order statuses. Legacy tools often rely on desktop-bound, rigid table interfaces that severely degrade the user experience for warehouse operators and field representatives operating on mobile devices.
 
-- **Framework**: [Next.js 15 (App Router)](https://nextjs.org/)
-- **Language**: [TypeScript](https://www.typescriptlang.org/)
-- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
-- **Data Tables**: [TanStack Table v8](https://tanstack.com/table/latest)
-- **State Management**: [Zustand](https://docs.pmnd.rs/zustand/getting-started/introduction)
-- **Animations**: [Framer Motion](https://www.framer.com/motion/)
-- **Testing**: [Vitest](https://vitest.dev/) & [React Testing Library](https://testing-library.com/)
-- **Icons**: [Lucide React](https://lucide.dev/)
+This project implements a production-grade, responsive dashboard that solves these constraints. It guarantees data density on desktop viewports while providing a strictly optimized mobile experience, ensuring operators can execute bulk actions, monitor inventory, and process orders without UI friction or layout breakage.
 
-## Key Features
+## Architectural Decisions
 
-- **Advanced Data Grid**: Features a highly interactive `TanStack Table` implementation supporting global fuzzy search, column-specific status filtering, multi-directional column sorting, and row selection.
-- **Micro-Interactions & Animations**: Integrated `Framer Motion` to power a slide-out Order Details Drawer, dynamic Revenue Bar Charts, and a floating Bulk Action Bar that gracefully animates in/out of the viewport based on user selection state.
-- **Global Toast Notification System**: A completely deterministic, Zustand-powered global notification system that safely manages asynchronous success states and timeouts.
-- **Deterministic UI Recovery**: Includes a robust `mockApi.ts` utility designed to test global React Error Boundaries and Loading Boundaries, ensuring the application fails gracefully during network latency or timeouts.
-- **Accessible Design**: Strictly maintains high contrast ratios (e.g., deeply saturated amber text for warning states) and structural CSS Grid layouts to prevent cumulative layout shift (CLS).
+The application is built on Next.js 16 (App Router) and TypeScript, enforcing strict type safety across the domain logic.
 
-## Testing & Coverage
+**Responsive Layout & Touch Optimization**
+The architecture employs a mobile-first strategy. Complex structures like data tables degrade into vertical card lists below the `md` breakpoint. CSS Grid with `auto-fill` and `minmax` is utilized to ensure fluid reflowing across viewports, eliminating arbitrary column count constraints. Interactive elements explicitly enforce a 44x44px minimum touch target area to comply with Apple HIG and Material Design standards.
 
-The application logic has been rigorously tested using **Vitest** and **React Testing Library**. The test suite explicitly focuses on validating the global state container (Zustand) and complex DOM interactions within the data grid.
+**State Management**
+Zustand is leveraged for both global business data and atomic UI state. By isolating the mobile drawer and navigation state into a dedicated `useUIStore.ts`, the application prevents unnecessary React reconciliation cycles across the broader component tree during context switching.
 
-**Current Coverage Report:**
+**Hardware-Accelerated UI**
+Complex interactive states, such as mobile side-drawers and bulk selection headers, are managed via CSS transforms (`translate-x`) and Framer Motion. This prevents layout shifts (CLS) and utilizes GPU acceleration to maintain a consistent 60fps render path, even on low-tier mobile devices.
 
-```text
- % Coverage report from v8
--------------------|---------|----------|---------|---------|
-File               | % Stmts | % Branch | % Funcs | % Lines |
--------------------|---------|----------|---------|---------|
-All files          |   96.36 |    81.57 |   94.11 |   95.74 |
- components/orders |   95.74 |    80.55 |   92.59 |   95.12 |
-  DataTable.tsx    |      92 |    68.75 |   85.71 |   89.47 |
-  columns.tsx      |     100 |       90 |     100 |     100 |
- store             |     100 |      100 |     100 |     100 |
-  useStore.ts      |     100 |      100 |     100 |     100 |
--------------------|---------|----------|---------|---------|
-```
+**Data Grid Operations**
+Desktop viewports utilize TanStack Table v8 for headless, high-performance data manipulation, supporting global fuzzy search, column-specific status filtering, and multi-directional sorting without coupling the business logic to the DOM representation.
 
-_Note: The core logical files (`useStore.ts` and `columns.tsx`) have achieved perfect 100% statement and functional coverage._
-
-## Setup Instructions
+## Local Development
 
 ### Prerequisites
-
 - Node.js 18.17 or later
+- npm or pnpm
 
 ### Installation
 
-1. Clone the repository and navigate into the project directory:
+Clone the repository and navigate to the application directory:
 
 ```bash
 git clone <repository-url>
-cd enterprise-order-management
+cd enterprise-order-management/application_repo
 ```
 
-2. Install dependencies:
+Install dependencies:
 
 ```bash
 npm install
 ```
 
-3. Run the development server:
+Start the local development server:
 
 ```bash
 npm run dev
 ```
 
-4. Open [http://localhost:3000](http://localhost:3000) with your browser to explore the dashboard.
+The application will be accessible at `http://localhost:3000`.
 
-### Testing Commands
+### Testing
 
-- Run all unit tests:
+The application includes a Vitest test suite targeting global state containers and complex DOM interactions.
 
 ```bash
+# Execute unit tests
 npm run test
-```
 
-- Run tests and generate coverage report:
-
-```bash
+# Generate coverage report
 npm run test:coverage
 ```
-
-## License
-
-This project is licensed under the MIT License.

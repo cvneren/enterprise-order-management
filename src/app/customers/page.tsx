@@ -64,7 +64,8 @@ export default function CustomersPage() {
       </div>
 
       <div className="bg-surface border border-border rounded-lg overflow-hidden shadow-sm">
-        <table className="w-full text-sm text-left font-sans">
+        <div className="overflow-x-auto">
+          <table className="min-w-full text-sm text-left font-sans">
           <thead className="bg-[#F9F9F8] border-b border-border">
             <tr>
               <th className="px-6 py-4 font-semibold text-[11px] uppercase tracking-[0.05em] text-[#71716E]">
@@ -121,5 +122,6 @@ export default function CustomersPage() {
         </table>
       </div>
     </div>
-  );
+  </div>
+);
 }

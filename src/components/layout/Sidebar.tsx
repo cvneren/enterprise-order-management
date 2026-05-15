@@ -22,7 +22,7 @@ export default function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="w-[260px] flex-shrink-0 bg-primary text-on-primary h-screen sticky top-0 flex flex-col">
+    <aside className="hidden md:flex w-[260px] flex-shrink-0 bg-primary text-on-primary h-screen sticky top-0 flex-col">
       <div className="h-16 flex items-center px-6 border-b border-primary-container/50">
         <Coffee className="w-6 h-6 mr-3 text-secondary-container" />
         <span className="font-heading font-semibold text-lg tracking-tight">Espresso Logic</span>
